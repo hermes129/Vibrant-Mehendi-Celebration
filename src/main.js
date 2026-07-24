@@ -1,4 +1,8 @@
 import './styles.css';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const eventDetails = {
   title: 'Noor & Zayn — Mehendi',
@@ -10,16 +14,98 @@ const eventDetails = {
 
 const opener = document.querySelector('#opener');
 const enterButton = document.querySelector('#enter-button');
+const main = document.querySelector('#main');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+let heroAnimationStarted = false;
 
-function openInvitation() {
-  opener.classList.add('is-opening');
-  document.body.classList.remove('is-locked');
-  window.setTimeout(() => {
-    opener.hidden = true;
-    document.querySelector('#main').focus({ preventScroll: true });
-  }, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 30 : 1050);
+function prepareHeroIntro() {
+  if (reduceMotion.matches) return;
+  gsap.set('.hero__image', { scale: 1.08 });
+  gsap.set('.hero__topline p', { autoAlpha: 0, y: -18 });
+  gsap.set('.hero__copy .eyebrow', { autoAlpha: 0, y: 20 });
+  gsap.set('.hero__copy h2 > *', { autoAlpha: 0, y: 46 });
+  gsap.set('.hero__dek', { autoAlpha: 0, y: 24 });
+  gsap.set('.scroll-cue', { autoAlpha: 0, x: 18 });
 }
 
+function animateHeroIntro() {
+  if (reduceMotion.matches || heroAnimationStarted) return;
+  heroAnimationStarted = true;
+  gsap.timeline({ defaults: { ease: 'power3.out' } })
+    .to('.hero__image', { scale: 1, duration: 1.8, ease: 'power2.out' }, 0)
+    .to('.hero__topline p', { autoAlpha: 1, y: 0, duration: .65, stagger: .1 }, .08)
+    .to('.hero__copy .eyebrow', { autoAlpha: 1, y: 0, duration: .55 }, .2)
+    .to('.hero__copy h2 > *', { autoAlpha: 1, y: 0, duration: .85, stagger: .12 }, .27)
+    .to('.hero__dek', { autoAlpha: 1, y: 0, duration: .7 }, .68)
+    .to('.scroll-cue', { autoAlpha: 1, x: 0, duration: .6 }, .82);
+}
+
+function finishOpening() {
+  opener.hidden = true;
+  main.focus({ preventScroll: true });
+  ScrollTrigger.refresh();
+}
+
+function openInvitation() {
+  if (opener.classList.contains('is-opening')) return;
+  opener.classList.add('is-opening');
+  enterButton.disabled = true;
+  document.body.classList.remove('is-locked');
+
+  if (reduceMotion.matches) {
+    animateHeroIntro();
+    window.setTimeout(finishOpening, 30);
+    return;
+  }
+
+  const contentPieces = opener.querySelectorAll(
+    '.opener__content > .eyebrow, .opener__content h1 > *, .opener__date, .opener__hint'
+  );
+
+  gsap.timeline({
+    defaults: { ease: 'power3.inOut' },
+    onComplete: finishOpening
+  })
+    .to(enterButton, {
+      autoAlpha: 0,
+      scale: .7,
+      rotation: 16,
+      duration: .5,
+      ease: 'back.in(1.5)'
+    }, 0)
+    .to(contentPieces, {
+      autoAlpha: 0,
+      y: -24,
+      duration: .5,
+      stagger: .035,
+      ease: 'power2.in'
+    }, 0)
+    .to('.garland--opener', {
+      autoAlpha: 0,
+      yPercent: -145,
+      scale: .9,
+      duration: .85
+    }, .04)
+    .to('.lantern--opener-left', {
+      autoAlpha: 0,
+      xPercent: -175,
+      y: -28,
+      rotation: -16,
+      duration: .9
+    }, .04)
+    .to('.lantern--opener-right', {
+      autoAlpha: 0,
+      xPercent: 175,
+      y: -28,
+      rotation: 16,
+      duration: .9
+    }, .04)
+    .call(animateHeroIntro, [], .25)
+    .to('.opener__panel--left', { xPercent: -101, duration: 1.08 }, .18)
+    .to('.opener__panel--right', { xPercent: 101, duration: 1.08 }, .18);
+}
+
+prepareHeroIntro();
 enterButton.addEventListener('click', openInvitation);
 
 document.querySelector('#calendar-button').addEventListener('click', () => {
@@ -62,22 +148,148 @@ function updateCountdown() {
 updateCountdown();
 window.setInterval(updateCountdown, 1000);
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('is-visible');
-      observer.unobserve(entry.target);
+function setupScrollAnimations() {
+  const revealElements = gsap.utils.toArray('.reveal');
+
+  if (reduceMotion.matches) {
+    gsap.set(revealElements, { clearProps: 'all' });
+    return;
+  }
+
+  revealElements.forEach((element) => {
+    const from = { autoAlpha: 0, y: 54 };
+
+    if (element.classList.contains('invitation__copy')) Object.assign(from, { x: -56, y: 0 });
+    if (element.classList.contains('event-card')) Object.assign(from, { x: 56, y: 0, rotation: -1, scale: .97 });
+    if (element.classList.contains('portrait-story__image-wrap')) Object.assign(from, { x: -50, y: 0, rotation: -5 });
+    if (element.classList.contains('portrait-story__copy')) Object.assign(from, { x: 50, y: 0 });
+    if (element.classList.contains('venue__card')) Object.assign(from, { x: 58, y: 0 });
+
+    gsap.from(element, {
+      ...from,
+      duration: .92,
+      ease: 'power3.out',
+      clearProps: 'transform,opacity,visibility',
+      scrollTrigger: {
+        trigger: element,
+        start: 'top 88%',
+        once: true,
+        invalidateOnRefresh: true
+      }
+    });
+  });
+
+  gsap.from('.countdown__grid > div', {
+    autoAlpha: 0,
+    y: 30,
+    scale: .92,
+    duration: .7,
+    stagger: .1,
+    ease: 'back.out(1.4)',
+    clearProps: 'transform,opacity,visibility',
+    scrollTrigger: {
+      trigger: '.countdown__grid',
+      start: 'top 86%',
+      once: true
     }
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
-document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+
+  gsap.to('.lantern--invitation', {
+    y: 42,
+    rotation: 5,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.invitation',
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 1
+    }
+  });
+
+  gsap.to('.peacock--programme', {
+    y: -42,
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.programme',
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 1
+    }
+  });
+
+  gsap.to('.chakri--countdown-left', {
+    rotation: '+=85',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.countdown',
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 1
+    }
+  });
+
+  gsap.to('.chakri--countdown-right', {
+    rotation: '-=85',
+    ease: 'none',
+    scrollTrigger: {
+      trigger: '.countdown',
+      start: 'top bottom',
+      end: 'bottom top',
+      scrub: 1
+    }
+  });
+}
+
+setupScrollAnimations();
 
 const dialog = document.querySelector('#rsvp-dialog');
+const dialogInner = dialog.querySelector('.rsvp-dialog__inner');
 const form = document.querySelector('#rsvp-form');
-document.querySelector('#rsvp-button').addEventListener('click', () => dialog.showModal());
-document.querySelector('#dialog-close').addEventListener('click', () => dialog.close());
+
+function openRsvpDialog() {
+  dialog.showModal();
+  if (reduceMotion.matches) return;
+  gsap.fromTo(dialogInner, {
+    autoAlpha: 0,
+    y: 28,
+    scale: .97
+  }, {
+    autoAlpha: 1,
+    y: 0,
+    scale: 1,
+    duration: .42,
+    ease: 'power3.out',
+    clearProps: 'transform,opacity,visibility'
+  });
+}
+
+function closeRsvpDialog() {
+  if (!dialog.open) return;
+  if (reduceMotion.matches) {
+    dialog.close();
+    return;
+  }
+  gsap.to(dialogInner, {
+    autoAlpha: 0,
+    y: 20,
+    scale: .98,
+    duration: .24,
+    ease: 'power2.in',
+    onComplete: () => {
+      dialog.close();
+      gsap.set(dialogInner, { clearProps: 'transform,opacity,visibility' });
+    }
+  });
+}
+
+document.querySelector('#rsvp-button').addEventListener('click', openRsvpDialog);
+document.querySelector('#dialog-close').addEventListener('click', closeRsvpDialog);
 dialog.addEventListener('click', (event) => {
-  if (event.target === dialog) dialog.close();
+  if (event.target === dialog) closeRsvpDialog();
+});
+dialog.addEventListener('cancel', (event) => {
+  event.preventDefault();
+  closeRsvpDialog();
 });
 
 function celebrate() {
@@ -119,7 +331,3 @@ form.addEventListener('submit', async (event) => {
     status.textContent = 'We could not send that reply. Please try again.';
   }
 });
-
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  document.querySelectorAll('.reveal').forEach((element) => element.classList.add('is-visible'));
-}

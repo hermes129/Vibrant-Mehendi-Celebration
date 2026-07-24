@@ -49,13 +49,13 @@ em { font-weight: 500; }
 /* Opener */
 .opener { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; min-height: 100dvh; color: var(--cream); overflow: hidden; }
 .opener[hidden] { display: none; }
-.opener__panel { position: absolute; inset-block: 0; width: 50.2%; background-color: var(--pink); transition: transform 1s cubic-bezier(.76,0,.24,1); }
+.opener__panel { position: absolute; inset-block: 0; width: 50.2%; background-color: var(--pink); will-change: transform; }
 .opener__panel::before { content: ''; position: absolute; inset: 14px; border: 2px solid var(--marigold); background-image: url('/assets/mehendi-pattern.svg'), repeating-linear-gradient(45deg, transparent 0 24px, rgba(255,241,202,.08) 24px 26px); background-size: 260px 260px, auto; filter: saturate(1.35) brightness(1.2); }
 .opener__panel--left { left: 0; }
 .opener__panel--right { right: 0; }
 .opener__panel--left::before { border-right: 0; }
 .opener__panel--right::before { border-left: 0; }
-.opener__content { position: relative; z-index: 2; width: min(92vw, 780px); padding: 4rem 1.5rem; text-align: center; transition: opacity .35s ease, transform .45s ease; }
+.opener__content { position: relative; z-index: 2; width: min(92vw, 780px); padding: 4rem 1.5rem; text-align: center; }
 .opener__content h1 { display: grid; justify-items: center; gap: .45rem; margin: 1rem 0; text-wrap: balance; }
 .opener__content h1 strong { display: block; font: 600 clamp(4.4rem, 13vw, 10rem)/.82 var(--display); letter-spacing: -.075em; text-transform: lowercase; }
 .opener__content h1 span { display: block; font: 600 clamp(.84rem, 1.3vw, 1.1rem)/1.35 var(--mono); letter-spacing: .25em; text-transform: uppercase; }
@@ -64,6 +64,7 @@ em { font-weight: 500; }
 .garland--opener { z-index: 3; top: .35rem; left: 50%; transform: translateX(-50%); }
 .lantern--opener-left { z-index: 3; top: .25rem; left: clamp(.2rem, 4vw, 4rem); transform: rotate(3deg); }
 .lantern--opener-right { z-index: 3; top: .25rem; right: clamp(.2rem, 4vw, 4rem); transform: rotate(-3deg) scale(.82); }
+.garland--opener, .lantern--opener-left, .lantern--opener-right, .opener__content > * { will-change: transform, opacity; }
 .flower-button { position: relative; display: grid; place-items: center; width: 220px; height: 220px; margin-inline: auto; border: 0; color: var(--ink); background: transparent; cursor: pointer; }
 .flower-button__petals, .flower-button__petals::before, .flower-button__petals::after { position: absolute; inset: 13%; content: ''; border-radius: 50% 50% 44% 56%; background: var(--marigold); transition: transform .35s ease; }
 .flower-button__petals::before { inset: 0; transform: rotate(60deg); }
@@ -71,9 +72,6 @@ em { font-weight: 500; }
 .flower-button__label { position: absolute; z-index: 2; inset: 0; display: grid; place-items: center; padding: 3.8rem; font: 700 .82rem/1.4 var(--mono); letter-spacing: .07em; text-align: center; text-transform: uppercase; }
 .flower-button:hover .flower-button__petals { transform: rotate(16deg) scale(1.08); }
 .opener.is-opening { pointer-events: none; }
-.opener.is-opening .opener__panel--left { transform: translateX(-101%); }
-.opener.is-opening .opener__panel--right { transform: translateX(101%); }
-.opener.is-opening .opener__content { opacity: 0; transform: scale(.9); }
 
 /* Hero */
 .hero { position: relative; min-height: 100svh; display: grid; align-items: end; color: var(--white); overflow: hidden; background: var(--ink); }
@@ -214,8 +212,7 @@ em { font-weight: 500; }
 @keyframes fall { to { transform: translateY(108vh) rotate(var(--turn)); } }
 
 /* Motion */
-.reveal { opacity: 0; transform: translateY(38px); transition: opacity .7s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
-.reveal.is-visible { opacity: 1; transform: translateY(0); }
+.reveal { opacity: 1; }
 
 @media (max-width: 900px) {
   .hero__copy h2 { display: grid; grid-template-columns: auto auto auto; justify-content: start; gap: 0 .8rem; }
@@ -314,5 +311,5 @@ em { font-weight: 500; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-  .reveal { opacity: 1; transform: none; }
+  .reveal { opacity: 1; }
 }
