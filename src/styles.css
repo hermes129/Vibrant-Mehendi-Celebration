@@ -96,16 +96,17 @@ em { font-weight: 500; }
 .invitation__copy h2, .portrait-story h2, .programme h2, .dress-code h2, .countdown h2, .rsvp h2, .venue h2 { text-wrap: balance; }
 .invitation__copy h2 em { color: var(--pink); }
 .invitation__copy > p:last-child { max-width: 38rem; font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.65; }
-.event-card { position: relative; z-index: 3; align-self: center; justify-self: center; width: min(86%, 560px); padding: clamp(4.5rem, 7vw, 7rem) clamp(2rem, 5vw, 5rem) clamp(2rem, 5vw, 5rem); color: var(--cream); background: var(--cobalt); border: 3px solid var(--ink); border-radius: 46% 46% 3px 3px / 13% 13% 3px 3px; box-shadow: 14px 14px 0 var(--pink); transform: rotate(2deg); }
-.event-card::before { content: ''; position: absolute; inset: 10px; border: 2px solid var(--marigold); border-radius: inherit; pointer-events: none; }
-.event-card__sun { position: relative; width: 90px; height: 90px; margin: 0 0 3rem; border: 2px solid var(--marigold); border-radius: 50%; }
+.event-card { position: relative; z-index: 3; align-self: center; justify-self: center; width: min(86%, 560px); min-height: 760px; display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(10rem, 15vw, 13rem) clamp(2rem, 5vw, 5rem) 3rem; color: var(--ink); background-color: var(--marigold); background-image: url('/assets/mehendi-hand-card.svg'), linear-gradient(160deg, #ffd963, #f0a31c); background-position: center 54%, center; background-repeat: no-repeat; background-size: 96% auto, cover; border: 3px solid var(--leaf); border-radius: 46% 46% 3px 3px / 13% 13% 3px 3px; box-shadow: 14px 14px 0 var(--pink); text-align: center; transform: rotate(2deg); overflow: hidden; }
+.event-card::before { content: ''; position: absolute; z-index: 0; inset: 10px; border: 2px solid var(--pink-dark); border-radius: inherit; pointer-events: none; }
+.event-card > * { position: relative; z-index: 2; }
+.event-card__sun { display: none; }
 .event-card__sun::before, .event-card__sun::after { content: ''; position: absolute; inset: 16px; border: 2px solid var(--marigold); transform: rotate(45deg); }
 .event-card__sun span { position: absolute; inset: 30px; background: var(--marigold); border-radius: 50%; }
-.event-card__date { margin: 0; font: 600 clamp(2.6rem, 5vw, 5.5rem)/.9 var(--display); }
-.event-card__date span { display: block; color: var(--marigold); font-size: 1.9em; }
+.event-card__date { margin: 0; color: var(--leaf); font: 600 clamp(2.6rem, 5vw, 5.5rem)/.9 var(--display); text-shadow: 0 1px 0 rgba(255,241,202,.75); }
+.event-card__date span { display: block; color: var(--pink-dark); font-size: 1.9em; }
 .event-card > p:not(.eyebrow, .event-card__date, .status-message) { margin: 1.1rem 0; }
-.action-row { display: flex; flex-wrap: wrap; gap: 1rem 2rem; margin-top: 3rem; }
-.text-button { min-height: 48px; padding: .5rem 0; color: inherit; border: 0; border-bottom: 2px solid var(--marigold); background: none; font: 700 .72rem var(--mono); letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+.action-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2rem; margin-top: 3rem; }
+.text-button { min-height: 48px; padding: .5rem 0; color: inherit; border: 0; border-bottom: 2px solid var(--leaf); background: none; font: 700 .72rem var(--mono); letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
 .status-message { min-height: 1.4em; margin: .8rem 0 0; font-size: .8rem; }
 .invitation__burst { position: absolute; top: 5%; left: 48%; color: var(--coral); font-size: clamp(5rem, 12vw, 12rem); transform: rotate(18deg); opacity: .45; }
 .garland--invitation { top: .5rem; left: 8%; }
@@ -251,7 +252,7 @@ em { font-weight: 500; }
   .lantern--opener-right { right: -.4rem; }
   .garland--invitation { top: .35rem; left: 2%; }
   .lantern--invitation { top: .25rem; right: -.15rem; opacity: .8; }
-  .event-card { width: calc(100% - 2.5rem); padding: 4rem 1.4rem 2rem; border-radius: 46% 46% 3px 3px / 10% 10% 3px 3px; box-shadow: 8px 8px 0 var(--pink); }
+  .event-card { width: calc(100% - 2.5rem); min-height: 690px; padding: 10rem 1.5rem 2rem; background-position: center 52%, center; background-size: 112% auto, cover; border-radius: 46% 46% 3px 3px / 10% 10% 3px 3px; box-shadow: 8px 8px 0 var(--pink); }
   .event-card__date { font-size: 3rem; }
   .action-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   .text-button { font-size: .62rem; }
