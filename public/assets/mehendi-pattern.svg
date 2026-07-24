@@ -1,29 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260">
-  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <g stroke="#9e174c" stroke-width="2.2" opacity=".18">
-      <path d="M18 76c39-9 55 27 30 52-22 22-50-4-34-28 11-16 33-8 27 8-4 10-17 8-18-2"/>
-      <path d="M242 184c-39 9-55-27-30-52 22-22 50 4 34 28-11 16-33 8-27-8 4-10 17-8 18 2"/>
-      <path d="M28 56c12-14 18-26 18-40M45 47c12-5 20-13 25-25M216 213c-12 5-20 13-25 25M232 204c-12 14-18 26-18 40"/>
-      <path d="M38 141c10 14 10 30 0 45M222 119c-10-14-10-30 0-45"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320">
+  <g opacity=".13" stroke-linejoin="round">
+    <g transform="translate(70 72)" fill="#df2d71" stroke="#9e174c" stroke-width="1.6">
+      <ellipse rx="13" ry="34" transform="translate(0 -27)"/>
+      <ellipse rx="13" ry="34" transform="rotate(72) translate(0 -27)"/>
+      <ellipse rx="13" ry="34" transform="rotate(144) translate(0 -27)"/>
+      <ellipse rx="13" ry="34" transform="rotate(216) translate(0 -27)"/>
+      <ellipse rx="13" ry="34" transform="rotate(288) translate(0 -27)"/>
+      <circle r="11" fill="#f6b51b" stroke="#ed6a3a"/>
     </g>
-    <g stroke="#257b4c" stroke-width="2" opacity=".16">
-      <path d="M84 12c10 25 12 49 6 72M91 29l14-11M91 45l18-8M91 62l17 2M176 248c-10-25-12-49-6-72M169 231l-14 11M169 215l-18 8M169 198l-17-2"/>
-      <path d="M14 210c25-10 49-12 72-6M31 203l-11-14M47 203l-8-18M64 203l2-17M246 50c-25 10-49 12-72 6M229 57l11 14M213 57l8 18M196 57l-2 17"/>
+    <g transform="translate(248 212) rotate(18)" fill="#f6b51b" stroke="#ed6a3a" stroke-width="1.6">
+      <ellipse rx="11" ry="29" transform="translate(0 -23)"/>
+      <ellipse rx="11" ry="29" transform="rotate(72) translate(0 -23)"/>
+      <ellipse rx="11" ry="29" transform="rotate(144) translate(0 -23)"/>
+      <ellipse rx="11" ry="29" transform="rotate(216) translate(0 -23)"/>
+      <ellipse rx="11" ry="29" transform="rotate(288) translate(0 -23)"/>
+      <circle r="9" fill="#2155cd" stroke="#102c7c"/>
     </g>
-    <g transform="translate(130 130)" opacity=".2">
-      <circle r="9" fill="#f6b51b" stroke="#ed6a3a" stroke-width="2"/>
-      <g fill="#df2d71" stroke="#9e174c" stroke-width="1.5">
-        <ellipse rx="8" ry="22" transform="translate(0 -25)"/>
-        <ellipse rx="8" ry="22" transform="rotate(60) translate(0 -25)"/>
-        <ellipse rx="8" ry="22" transform="rotate(120) translate(0 -25)"/>
-        <ellipse rx="8" ry="22" transform="rotate(180) translate(0 -25)"/>
-        <ellipse rx="8" ry="22" transform="rotate(240) translate(0 -25)"/>
-        <ellipse rx="8" ry="22" transform="rotate(300) translate(0 -25)"/>
-      </g>
-    </g>
-    <g fill="#f6b51b" opacity=".22">
-      <circle cx="19" cy="19" r="3"/><circle cx="241" cy="241" r="3"/>
-      <circle cx="241" cy="19" r="3"/><circle cx="19" cy="241" r="3"/>
+    <g transform="translate(128 278) rotate(-12)" fill="#257b4c" stroke="#173d28" stroke-width="1.4">
+      <ellipse rx="8" ry="21" transform="translate(0 -17)"/>
+      <ellipse rx="8" ry="21" transform="rotate(72) translate(0 -17)"/>
+      <ellipse rx="8" ry="21" transform="rotate(144) translate(0 -17)"/>
+      <ellipse rx="8" ry="21" transform="rotate(216) translate(0 -17)"/>
+      <ellipse rx="8" ry="21" transform="rotate(288) translate(0 -17)"/>
+      <circle r="7" fill="#f6b51b" stroke="#ed6a3a"/>
     </g>
   </g>
 </svg>

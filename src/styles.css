@@ -37,7 +37,7 @@ em { font-weight: 500; }
 .motif-field {
   background-color: var(--cream);
   background-image: url('/assets/mehendi-pattern.svg');
-  background-size: 260px 260px;
+  background-size: 420px 420px;
 }
 
 .garland, .lantern, .chakri, .peacock { position: absolute; z-index: 2; pointer-events: none; user-select: none; }
@@ -54,13 +54,14 @@ em { font-weight: 500; }
 .opener__panel--left { left: 0; border-right: 1px solid var(--cream); }
 .opener__panel--right { right: 0; border-left: 1px solid var(--cream); }
 .opener__content { position: relative; z-index: 2; width: min(92vw, 780px); padding: 4rem 1.5rem; text-align: center; transition: opacity .35s ease, transform .45s ease; }
-.opener__content h1 { margin: .5rem 0; font: 600 clamp(4.4rem, 13vw, 10rem)/.68 var(--display); letter-spacing: -.075em; text-transform: lowercase; }
-.opener__content h1 span { display: block; font: 600 clamp(.8rem, 1.3vw, 1.1rem)/1 var(--mono); letter-spacing: .28em; text-transform: uppercase; }
+.opener__content h1 { display: grid; justify-items: center; gap: .45rem; margin: 1rem 0; text-wrap: balance; }
+.opener__content h1 strong { display: block; font: 600 clamp(4.4rem, 13vw, 10rem)/.82 var(--display); letter-spacing: -.075em; text-transform: lowercase; }
+.opener__content h1 span { display: block; font: 600 clamp(.8rem, 1.3vw, 1.1rem)/1.25 var(--mono); letter-spacing: .28em; text-transform: uppercase; }
 .opener__date { margin: 2rem 0 1rem; font: 700 .82rem var(--mono); letter-spacing: .3em; }
 .opener__hint { margin: 1.2rem 0 0; font-size: .85rem; }
-.garland--opener { z-index: 3; top: -1rem; left: 50%; transform: translateX(-50%); }
-.lantern--opener-left { z-index: 3; top: -1rem; left: clamp(.2rem, 4vw, 4rem); transform: rotate(3deg); }
-.lantern--opener-right { z-index: 3; top: -1rem; right: clamp(.2rem, 4vw, 4rem); transform: rotate(-3deg) scale(.82); }
+.garland--opener { z-index: 3; top: .35rem; left: 50%; transform: translateX(-50%); }
+.lantern--opener-left { z-index: 3; top: .25rem; left: clamp(.2rem, 4vw, 4rem); transform: rotate(3deg); }
+.lantern--opener-right { z-index: 3; top: .25rem; right: clamp(.2rem, 4vw, 4rem); transform: rotate(-3deg) scale(.82); }
 .flower-button { position: relative; width: 190px; height: 190px; border: 0; color: var(--ink); background: transparent; cursor: pointer; }
 .flower-button__petals, .flower-button__petals::before, .flower-button__petals::after { position: absolute; inset: 21%; content: ''; border-radius: 50% 50% 44% 56%; background: var(--marigold); transition: transform .35s ease; }
 .flower-button__petals::before { inset: 0; transform: rotate(60deg); }
@@ -90,6 +91,7 @@ em { font-weight: 500; }
 .invitation::after { content: ''; position: absolute; z-index: 0; inset: auto 0 0; height: 34px; background: linear-gradient(135deg, var(--pink) 25%, transparent 25%) 0 0/28px 28px, linear-gradient(225deg, var(--cobalt) 25%, transparent 25%) 0 0/28px 28px, var(--marigold); opacity: .92; }
 .invitation__copy { position: relative; z-index: 3; align-self: center; padding: clamp(7rem, 11vw, 12rem) clamp(1.5rem, 7vw, 8rem); }
 .invitation__copy h2, .portrait-story h2, .programme h2, .dress-code h2, .countdown h2, .rsvp h2, .venue h2 { margin-bottom: 2rem; font: 600 clamp(3.6rem, 7vw, 8.5rem)/.86 var(--display); letter-spacing: -.065em; }
+.invitation__copy h2, .portrait-story h2, .programme h2, .dress-code h2, .countdown h2, .rsvp h2, .venue h2 { text-wrap: balance; }
 .invitation__copy h2 em { color: var(--pink); }
 .invitation__copy > p:last-child { max-width: 38rem; font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.65; }
 .event-card { position: relative; z-index: 3; align-self: center; justify-self: center; width: min(86%, 560px); padding: clamp(4.5rem, 7vw, 7rem) clamp(2rem, 5vw, 5rem) clamp(2rem, 5vw, 5rem); color: var(--cream); background: var(--cobalt); border: 3px solid var(--ink); border-radius: 46% 46% 3px 3px / 13% 13% 3px 3px; box-shadow: 14px 14px 0 var(--pink); transform: rotate(2deg); }
@@ -104,8 +106,8 @@ em { font-weight: 500; }
 .text-button { min-height: 48px; padding: .5rem 0; color: inherit; border: 0; border-bottom: 2px solid var(--marigold); background: none; font: 700 .72rem var(--mono); letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
 .status-message { min-height: 1.4em; margin: .8rem 0 0; font-size: .8rem; }
 .invitation__burst { position: absolute; top: 5%; left: 48%; color: var(--coral); font-size: clamp(5rem, 12vw, 12rem); transform: rotate(18deg); opacity: .45; }
-.garland--invitation { top: -1rem; left: 8%; }
-.lantern--invitation { top: -2rem; right: 1.5%; transform: rotate(-5deg); }
+.garland--invitation { top: .5rem; left: 8%; }
+.lantern--invitation { top: .35rem; right: 1.5%; transform: rotate(-5deg); }
 
 /* Portrait */
 .portrait-story { position: relative; display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); align-items: stretch; background: var(--leaf); color: var(--cream); overflow: hidden; }
@@ -181,7 +183,7 @@ em { font-weight: 500; }
 .rsvp__signoff { margin-top: 4rem; font-family: var(--display); font-style: italic; font-size: 1.3rem; }
 .rsvp__signoff strong { font-size: 2rem; }
 .rsvp__flower { position: absolute; left: -8rem; bottom: -8rem; width: 28rem; height: 28rem; border: 3px solid var(--pink); border-radius: 50%; background: url('/assets/mehendi-pattern.svg') center/220px 220px; box-shadow: 0 0 0 16px rgba(223,45,113,.18), 0 0 0 34px rgba(246,181,27,.12); opacity: .58; }
-.garland--rsvp { top: -1rem; left: 50%; transform: translateX(-50%); }
+.garland--rsvp { top: .5rem; left: 50%; transform: translateX(-50%); }
 .peacock--rsvp { right: -2rem; bottom: -2rem; opacity: .58; transform: rotate(-8deg); }
 
 /* Dialog + confetti */
@@ -223,13 +225,15 @@ em { font-weight: 500; }
 @media (max-width: 600px) {
   .opener__panel::before { inset: 7px; }
   .opener__content { padding-inline: 1rem; }
-  .opener__content h1 { font-size: clamp(4rem, 22vw, 6.8rem); }
+  .opener__content h1 { gap: .35rem; margin-block: .9rem; }
+  .opener__content h1 strong { font-size: clamp(3.9rem, 20vw, 6.2rem); line-height: .84; }
+  .opener__content h1 span { font-size: .7rem; line-height: 1.25; }
   .flower-button { width: 156px; height: 156px; }
   .flower-button__label { padding: 2.5rem; font-size: .64rem; }
   .hero { min-height: 100svh; }
   .hero__topline { inset: 1rem 1rem auto; font-size: .6rem; }
   .hero__topline p:last-child { text-align: right; }
-  .hero__image { object-position: 45% center; }
+  .hero__image { object-position: 30% center; }
   .hero__copy { padding: 3rem 1rem 5.5rem; }
   .hero__copy h2 { display: block; font-size: clamp(5rem, 25vw, 7rem); line-height: .68; }
   .hero__copy h2 span, .hero__copy h2 b { display: block; }
@@ -237,14 +241,14 @@ em { font-weight: 500; }
   .hero__copy h2 span:last-child { margin-left: 2.4rem; }
   .hero__dek { margin: 1.5rem 3.5rem 0 0; font-size: 1rem; }
   .scroll-cue { right: .8rem; bottom: 1rem; font-size: .58rem; }
-  .invitation__copy h2, .portrait-story h2, .programme h2, .dress-code h2, .countdown h2, .rsvp h2, .venue h2 { font-size: clamp(3.2rem, 16vw, 5rem); }
+  .invitation__copy h2, .portrait-story h2, .programme h2, .dress-code h2, .countdown h2, .rsvp h2, .venue h2 { font-size: clamp(3rem, 14vw, 4.5rem); line-height: .9; letter-spacing: -.055em; }
   .invitation__copy { padding: 4rem 1.25rem 2.5rem; }
   .garland { width: 270px; }
   .lantern { width: 78px; }
   .lantern--opener-left { left: -.4rem; }
   .lantern--opener-right { right: -.4rem; }
-  .garland--invitation { left: 2%; }
-  .lantern--invitation { right: -.7rem; opacity: .8; }
+  .garland--invitation { top: .35rem; left: 2%; }
+  .lantern--invitation { top: .25rem; right: -.15rem; opacity: .8; }
   .event-card { width: calc(100% - 2.5rem); padding: 4rem 1.4rem 2rem; border-radius: 46% 46% 3px 3px / 10% 10% 3px 3px; box-shadow: 8px 8px 0 var(--pink); }
   .event-card__date { font-size: 3rem; }
   .action-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
