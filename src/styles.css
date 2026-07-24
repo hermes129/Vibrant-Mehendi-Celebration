@@ -32,7 +32,7 @@ em { font-weight: 500; }
 .skip-link { position: fixed; top: -100px; left: 1rem; z-index: 1000; padding: .8rem 1rem; color: var(--white); background: var(--ink); }
 .skip-link:focus { top: 1rem; }
 
-.eyebrow, .section-kicker { font: 700 clamp(.8rem, .9vw, .95rem)/1.5 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+.eyebrow, .section-kicker { font: 700 clamp(1.5rem, .9vw, .95rem)/1.5 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
 .section-kicker { margin-bottom: clamp(1rem, 2vw, 1.6rem); }
 .motif-field {
   background-color: var(--cream);
@@ -59,8 +59,8 @@ em { font-weight: 500; }
 .opener__content h1 { display: grid; justify-items: center; gap: .45rem; margin: 1rem 0; text-wrap: balance; }
 .opener__content h1 strong { display: block; font: 600 clamp(4.4rem, 13vw, 10rem)/.82 var(--display); letter-spacing: -.075em; text-transform: lowercase; }
 .opener__content h1 span { display: block; font: 600 clamp(.84rem, 1.3vw, 1.1rem)/1.35 var(--mono); letter-spacing: .25em; text-transform: uppercase; }
-.opener__date { margin: 2rem 0 1rem; font: 700 .9rem/1.45 var(--mono); letter-spacing: .25em; }
-.opener__hint { margin: 1.2rem 0 0; font-size: 1rem; line-height: 1.5; }
+.opener__date { margin: 2rem 0 1rem; font: 700 1.3rem/1.45 var(--mono); letter-spacing: .25em; }
+.opener__hint { margin: 1.0rem 0 0; font-size: 1.3rem; line-height: 1.5; }
 .garland--opener { z-index: 3; top: .35rem; left: 50%; transform: translateX(-50%); }
 .lantern--opener-left { z-index: 3; top: .25rem; left: clamp(.2rem, 4vw, 4rem); transform: rotate(3deg); }
 .lantern--opener-right { z-index: 3; top: .25rem; right: clamp(.2rem, 4vw, 4rem); transform: rotate(-3deg) scale(.82); }
@@ -120,7 +120,7 @@ em { font-weight: 500; }
 .portrait-story::before { content: ''; position: absolute; inset: 0; background: url('/assets/mehendi-pattern.svg') center/300px 300px; filter: saturate(.65) brightness(1.25); opacity: .25; }
 .portrait-story__image-wrap { position: relative; z-index: 2; margin: clamp(1.2rem, 4vw, 4rem); padding: 12px 12px 4rem; background: var(--paper); color: var(--pink-dark); box-shadow: 16px 16px 0 var(--marigold); transform: rotate(-2deg); }
 .portrait-story__image-wrap img { height: min(80svh, 900px); object-fit: cover; object-position: center 30%; }
-.image-note { margin: 1.2rem .5rem 0; font: italic 500 1.1rem var(--display); }
+.image-note { margin: 1.2rem .5rem 0; font: italic 500 2rem var(--display); }
 .portrait-story__copy { position: relative; z-index: 3; align-self: center; padding: clamp(4rem, 10vw, 11rem) clamp(1.5rem, 8vw, 9rem); }
 .portrait-story__copy h2 em { color: var(--marigold); }
 .portrait-story__copy > p:nth-of-type(2) { max-width: 37rem; font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.65; }
@@ -162,7 +162,7 @@ em { font-weight: 500; }
 .dress-code { display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 4rem; padding: clamp(4rem, 10vw, 11rem) clamp(1.25rem, 7vw, 8rem); color: var(--cream); background: var(--pink); }
 .dress-code h2 { margin-bottom: 2rem; }
 .dress-code h2 em { color: var(--marigold); }
-.dress-code__copy > p:last-child { max-width: 42rem; font-size: clamp(1.05rem, 1.6vw, 1.3rem); line-height: 1.6; }
+.dress-code__copy > p:last-child { max-width: 42rem; font-size: clamp(1.3rem, 1.6vw, 1.3rem); line-height: 1.6; }
 .swatches { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
 .swatches span { aspect-ratio: 1; display: grid; place-items: center; padding: .8rem; color: var(--white); background: var(--swatch); border: 2px solid var(--cream); border-radius: 50%; font: 700 .78rem/1.35 var(--mono); text-align: center; text-transform: uppercase; }
 .swatches span:nth-child(2), .swatches span:nth-child(5) { color: var(--ink); }
@@ -184,10 +184,10 @@ em { font-weight: 500; }
 .rsvp > *:not(.garland, .peacock, .rsvp__flower) { position: relative; z-index: 3; }
 .rsvp h2 { margin-bottom: 2rem; }
 .rsvp h2 em { color: var(--marigold); }
-.rsvp > p:nth-of-type(2) { max-width: 42rem; font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.6; }
+.rsvp > p:nth-of-type(2) { max-width: 42rem; font-size: clamp(1.3rem, 1.5vw, 1.25rem); line-height: 1.6; }
 .solid-button--light { color: var(--ink); background: var(--marigold); }
 .rsvp__signoff { margin-top: 4rem; font-family: var(--display); font-style: italic; font-size: 1.3rem; }
-.rsvp__signoff strong { font-size: 2rem; }
+.rsvp__signoff strong { font-size: 2.5rem; }
 .rsvp__flower { position: absolute; left: -8rem; bottom: -8rem; width: 28rem; height: 28rem; border: 3px solid var(--pink); border-radius: 50%; background: url('/assets/mehendi-pattern.svg') center/220px 220px; box-shadow: 0 0 0 16px rgba(223,45,113,.18), 0 0 0 34px rgba(246,181,27,.12); opacity: .58; }
 .garland--rsvp { top: .5rem; left: 50%; transform: translateX(-50%); }
 .peacock--rsvp { right: -2rem; bottom: -2rem; opacity: .58; transform: rotate(-8deg); }
@@ -232,7 +232,7 @@ em { font-weight: 500; }
   .opener__content { padding-inline: 1rem; }
   .opener__content h1 { gap: .35rem; margin-block: .9rem; }
   .opener__content h1 strong { font-size: clamp(3.9rem, 20vw, 6.2rem); line-height: .84; }
-  .opener__content h1 span { font-size: .82rem; line-height: 1.35; letter-spacing: .2em; }
+  .opener__content h1 span { font-size: 1.3rem; line-height: 1.35; letter-spacing: .2em; }
   .flower-button { width: 200px; height: 200px; }
   .flower-button__label { padding: 3.35rem; font-size: .8rem; line-height: 1.4; }
   .hero { min-height: 100svh; }
@@ -245,7 +245,7 @@ em { font-weight: 500; }
   .hero__copy h2 span, .hero__copy h2 b { display: block; }
   .hero__copy h2 b { margin: .2rem 0 .2rem 1rem; font-size: .34em; }
   .hero__copy h2 span:last-child { margin-left: 2.4rem; }
-  .hero__dek { margin: 1.5rem 3.5rem 0 0; font-size: 1.05rem; line-height: 1.5; }
+  .hero__dek { margin: 1.5rem 3.5rem 0 0; font-size: 1.4rem; line-height: 1.5; }
   .scroll-cue { right: .8rem; bottom: 1rem; font-size: .75rem; line-height: 1.4; }
   .invitation__copy h2, .portrait-story h2, .programme h2, .dress-code h2, .countdown h2, .rsvp h2, .venue h2 { font-size: clamp(3rem, 14vw, 4.5rem); line-height: .9; letter-spacing: -.055em; }
   .invitation__copy { padding: 4rem 1.25rem 2.5rem; }
@@ -281,7 +281,7 @@ em { font-weight: 500; }
   .celebration h2 { font-size: clamp(3.4rem, 16vw, 5rem); }
   .dress-code { padding: 4rem 1.25rem; }
   .swatches { grid-template-columns: repeat(2, 1fr); }
-  .swatches span { font-size: .8rem; line-height: 1.35; }
+  .swatches span { font-size: 1.3rem; line-height: 1.35; }
   .swatches span:last-child { grid-column: 1 / -1; width: 50%; }
   .countdown { padding: 7rem 1.25rem 4rem; }
   .chakri--countdown-left, .chakri--countdown-right { width: 76px; top: -1.5rem; }
