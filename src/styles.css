@@ -105,7 +105,9 @@ em { font-weight: 500; }
 .event-card .eyebrow { align-self: center; padding: .28rem .7rem; border: 1px solid rgba(109,44,23,.35); border-radius: 999px; background: rgba(255,205,154,.78); }
 .event-card__date { margin: 0; color: var(--leaf); font: 600 clamp(2.6rem, 5vw, 5.5rem)/.9 var(--display); text-shadow: 0 1px 0 rgba(255,241,202,.75); }
 .event-card__date span { display: block; color: #8f2f16; font-size: 1.9em; }
-.event-card > p:not(.eyebrow, .event-card__date, .status-message) { align-self: center; max-width: 100%; margin: .65rem 0; padding: .18rem .65rem; background: transparent; font-weight: 600; }
+.event-card > p:not(.eyebrow, .event-card__date, .status-message, .event-detail) { align-self: center; max-width: 100%; margin: .65rem 0; padding: .18rem .65rem; background: transparent; font-weight: 600; }
+.event-card > .event-detail { align-self: center; display: flex; align-items: center; max-width: 100%; gap: .42rem; margin: .16rem 0; padding: .08rem .65rem; font-weight: 600; line-height: 1.35; }
+.event-detail__icon { flex: 0 0 auto; width: 1.05rem; height: 1.05rem; fill: none; stroke: #8f2f16; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .event-card .action-row { margin-top: 1.6rem; }
 .event-card .text-button { min-width: 118px; padding: .65rem .75rem; border: 1px solid #6d2c17; background: rgba(255,205,147,.88); box-shadow: 3px 3px 0 rgba(109,44,23,.22); }
 .action-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem 2rem; margin-top: 3rem; }
