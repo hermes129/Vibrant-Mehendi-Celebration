@@ -96,7 +96,7 @@ em { font-weight: 500; }
 .invitation__copy h2, .portrait-story h2, .programme h2, .dress-code h2, .countdown h2, .rsvp h2, .venue h2 { text-wrap: balance; }
 .invitation__copy h2 em { color: var(--pink); }
 .invitation__copy > p:last-child { max-width: 38rem; font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.65; }
-.event-card { position: relative; z-index: 3; align-self: center; justify-self: center; width: min(76%, 430px); min-height: 850px; display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(12rem, 17vw, 15rem) clamp(2rem, 4vw, 3.5rem) 6.5rem; color: #562414; background-color: var(--marigold); background-image: url('/assets/mehendi-hand-illustration-v2.webp'); background-position: center; background-repeat: no-repeat; background-size: cover; border: 3px solid var(--leaf); border-radius: 2px; box-shadow: 14px 14px 0 var(--pink); text-align: center; text-shadow: 0 1px 0 rgba(255,241,202,.5); transform: rotate(2deg); overflow: hidden; }
+.event-card { position: relative; z-index: 3; align-self: center; justify-self: center; width: min(76%, 430px); min-height: 850px; display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(12rem, 17vw, 15rem) clamp(2rem, 4vw, 3.5rem) 6.5rem; color: #562414; background-color: var(--marigold); background-image: url('/assets/mehendi-hand-illustration-v2.webp'); background-position: center; background-repeat: no-repeat; background-size: 114% auto; border: 3px solid var(--leaf); border-radius: 2px; box-shadow: 14px 14px 0 var(--pink); text-align: center; text-shadow: 0 1px 0 rgba(255,241,202,.5); transform: rotate(2deg); overflow: hidden; }
 .event-card::before { display: none; }
 .event-card > * { position: relative; z-index: 2; }
 .event-card__sun { display: none; }
@@ -255,7 +255,7 @@ em { font-weight: 500; }
   .lantern--opener-right { right: -.4rem; }
   .garland--invitation { top: .35rem; left: 2%; }
   .lantern--invitation { top: .25rem; right: -.15rem; opacity: .8; }
-  .event-card { width: calc(100% - 2.5rem); min-height: 690px; padding: 12rem 1.5rem 6.5rem; background-position: center; background-size: cover; border-radius: 2px; box-shadow: 8px 8px 0 var(--pink); }
+  .event-card { width: calc(100% - 2.5rem); min-height: 690px; padding: 12rem 1.5rem 6.5rem; background-position: center; background-size: 114% auto; border-radius: 2px; box-shadow: 8px 8px 0 var(--pink); }
   .event-card .action-row { gap: .6rem; margin-top: 1rem; }
   .event-card .text-button { min-width: 126px; font-size: .58rem; }
   .event-card__date { font-size: 3rem; }
