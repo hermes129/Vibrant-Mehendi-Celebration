@@ -188,6 +188,8 @@ em { font-weight: 500; }
 .solid-button--light { color: var(--ink); background: var(--marigold); }
 .rsvp__signoff { margin-top: 4rem; font-family: var(--display); font-style: italic; font-size: 1.3rem; }
 .rsvp__signoff strong { font-size: 2.5rem; }
+.rsvp__music-credit { max-width: 36rem; margin: 2.5rem 0 0; font: 700 .64rem/1.6 var(--mono); letter-spacing: .05em; text-transform: uppercase; }
+.rsvp__music-credit a { color: inherit; }
 .rsvp__flower { position: absolute; left: -8rem; bottom: -8rem; width: 28rem; height: 28rem; border: 3px solid var(--pink); border-radius: 50%; background: url('/assets/mehendi-pattern.svg') center/220px 220px; box-shadow: 0 0 0 16px rgba(223,45,113,.18), 0 0 0 34px rgba(246,181,27,.12); opacity: .58; }
 .garland--rsvp { top: .5rem; left: 50%; transform: translateX(-50%); }
 .peacock--rsvp { right: -2rem; bottom: -2rem; opacity: .58; transform: rotate(-8deg); }
@@ -206,6 +208,14 @@ em { font-weight: 500; }
 .rsvp-dialog label.radio { display: flex; align-items: center; gap: .7rem; min-height: 44px; font-family: var(--sans); font-size: 1rem; letter-spacing: 0; text-transform: none; }
 .radio input { width: 20px; height: 20px; accent-color: var(--pink); }
 .form-status { min-height: 1.5em; margin: 0; font-weight: 700; }
+.music-toggle { position: fixed; z-index: 90; right: max(1rem, env(safe-area-inset-right)); bottom: max(1rem, env(safe-area-inset-bottom)); display: inline-flex; align-items: center; gap: .7rem; min-height: 54px; padding: .7rem 1rem; color: var(--ink); border: 2px solid var(--ink); border-radius: 999px; background: var(--marigold); box-shadow: 5px 5px 0 var(--pink); font: 700 .68rem/1.3 var(--mono); letter-spacing: .06em; text-transform: uppercase; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+.music-toggle[hidden] { display: none; }
+.music-toggle:hover { background: var(--cream); transform: translate(2px, 2px); box-shadow: 3px 3px 0 var(--pink); }
+.music-toggle:focus-visible { outline-color: var(--cobalt); }
+.music-toggle__icon { display: flex; justify-content: center; align-items: center; gap: .22rem; width: 1.1rem; height: 1.1rem; flex: 0 0 1.1rem; }
+.music-toggle__icon i { width: .2rem; height: .8rem; background: currentColor; }
+.music-toggle:not(.is-playing) .music-toggle__icon { display: block; width: 0; height: 0; margin-left: .16rem; border-top: .45rem solid transparent; border-bottom: .45rem solid transparent; border-left: .7rem solid currentColor; }
+.music-toggle:not(.is-playing) .music-toggle__icon i { display: none; }
 .confetti { position: fixed; inset: 0; z-index: 300; pointer-events: none; overflow: hidden; }
 .confetti i { position: absolute; top: -30px; left: var(--x); width: 13px; height: 20px; display: none; background: var(--colour); border-radius: 50% 0 50% 0; }
 .confetti.is-active i { display: block; animation: fall var(--duration) var(--delay) cubic-bezier(.2,.8,.3,1) forwards; }
@@ -235,6 +245,8 @@ em { font-weight: 500; }
   .opener__content h1 span { font-size: 1.3rem; line-height: 1.35; letter-spacing: .2em; }
   .flower-button { width: 200px; height: 200px; }
   .flower-button__label { padding: 3.35rem; font-size: .8rem; line-height: 1.4; }
+  .music-toggle { width: 54px; min-width: 54px; padding: 0; justify-content: center; }
+  .music-toggle__label { position: absolute; overflow: hidden; width: 1px; height: 1px; clip-path: inset(50%); white-space: nowrap; }
   .hero { min-height: 100svh; }
   .hero__topline { inset: 1rem 1rem auto; gap: .5rem; font-size: .75rem; line-height: 1.4; letter-spacing: .06em; }
   .hero__topline p { max-width: 46%; }

@@ -167,6 +167,7 @@
         <p>Please reply by 15 September 2026. We cannot wait to celebrate with you.</p>
         <button class="solid-button solid-button--light" id="rsvp-button" type="button">Send your RSVP</button>
         <p class="rsvp__signoff">With love,<br /><strong>Noor & Zayn</strong></p>
+        <p class="rsvp__music-credit">Music: <a href="https://commons.wikimedia.org/wiki/File:Dhol_Thap_Punjab_Folk.ogg" target="_blank" rel="noreferrer">Dhol Thap Punjab Folk by Aphijoiya · CC BY-SA 4.0</a></p>
       </section>
     </main>
 
@@ -191,6 +192,13 @@
     </dialog>
 
     <div class="confetti" id="confetti" aria-hidden="true"></div>
+    <audio id="site-music" loop preload="metadata">
+      <source src="./assets/dhol-thap-punjab-folk.ogg" type="audio/ogg" />
+    </audio>
+    <button class="music-toggle" id="music-toggle" type="button" aria-pressed="false" aria-label="Play mehendi music" hidden>
+      <span class="music-toggle__icon" aria-hidden="true"><i></i><i></i></span>
+      <span class="music-toggle__label">Play music</span>
+    </button>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

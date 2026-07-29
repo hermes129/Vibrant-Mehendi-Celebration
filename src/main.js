@@ -15,8 +15,37 @@ const eventDetails = {
 const opener = document.querySelector('#opener');
 const enterButton = document.querySelector('#enter-button');
 const main = document.querySelector('#main');
+const skipLink = document.querySelector('.skip-link');
+const music = document.querySelector('#site-music');
+const musicToggle = document.querySelector('#music-toggle');
+const musicLabel = musicToggle.querySelector('.music-toggle__label');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let heroAnimationStarted = false;
+
+music.volume = 0.34;
+
+function syncMusicControl() {
+  const isPlaying = !music.paused;
+  musicToggle.classList.toggle('is-playing', isPlaying);
+  musicToggle.setAttribute('aria-pressed', String(isPlaying));
+  musicToggle.setAttribute('aria-label', isPlaying ? 'Pause mehendi music' : 'Play mehendi music');
+  musicLabel.textContent = isPlaying ? 'Dhol playing' : 'Play music';
+}
+
+async function setMusicPlaying(shouldPlay) {
+  if (!shouldPlay) {
+    music.pause();
+    syncMusicControl();
+    return;
+  }
+
+  try {
+    await music.play();
+  } catch {
+    // The persistent control remains available if a browser blocks playback.
+  }
+  syncMusicControl();
+}
 
 function prepareHeroIntro() {
   if (reduceMotion.matches) return;
@@ -46,11 +75,13 @@ function finishOpening() {
   ScrollTrigger.refresh();
 }
 
-function openInvitation() {
+function openInvitation(startMusic = true) {
   if (opener.classList.contains('is-opening')) return;
   opener.classList.add('is-opening');
   enterButton.disabled = true;
   document.body.classList.remove('is-locked');
+  musicToggle.hidden = false;
+  if (startMusic) setMusicPlaying(true);
 
   if (reduceMotion.matches) {
     animateHeroIntro();
@@ -106,7 +137,11 @@ function openInvitation() {
 }
 
 prepareHeroIntro();
-enterButton.addEventListener('click', openInvitation);
+enterButton.addEventListener('click', () => openInvitation(true));
+skipLink.addEventListener('click', () => openInvitation(false));
+musicToggle.addEventListener('click', () => setMusicPlaying(music.paused));
+music.addEventListener('play', syncMusicControl);
+music.addEventListener('pause', syncMusicControl);
 
 document.querySelector('#calendar-button').addEventListener('click', () => {
   const ics = [
