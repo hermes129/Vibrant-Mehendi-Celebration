@@ -60,7 +60,15 @@
         <div class="event-card reveal">
           <div class="event-card__sun" aria-hidden="true"><span></span></div>
           <p class="eyebrow">Mehendi night</p>
-          <p class="event-card__date"><span>17</span> October</p>
+          <div class="date-scratch date-scratch--mehendi" data-date-scratch data-scratch-key="mehendi-wedding-date" data-scratch-cover="#df2d71" data-scratch-accent="#ffbd1a">
+            <div class="date-scratch__stage">
+              <div class="date-scratch__value" tabindex="-1" aria-label="Mehendi date: 17 October 2026"><span>17</span><i>·</i><span>10</span><i>·</i><span>26</span></div>
+              <canvas class="date-scratch__canvas" aria-hidden="true"></canvas>
+              <p class="date-scratch__hint" aria-hidden="true">Scratch the date</p>
+            </div>
+            <button class="date-scratch__button" type="button">Reveal date</button>
+            <p class="sr-only" data-date-scratch-status aria-live="polite"></p>
+          </div>
           <p class="event-detail">
             <svg class="event-detail__icon" viewBox="0 0 24 24" aria-hidden="true">
               <circle cx="12" cy="12" r="8.5"></circle>

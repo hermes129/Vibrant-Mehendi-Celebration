@@ -101,8 +101,19 @@ em { font-weight: 500; }
 .event-card__sun::before, .event-card__sun::after { content: ''; position: absolute; inset: 16px; border: 2px solid var(--marigold); transform: rotate(45deg); }
 .event-card__sun span { position: absolute; inset: 30px; background: var(--marigold); border-radius: 50%; }
 .event-card .eyebrow { align-self: center; padding: .28rem .7rem; border: 1px solid rgba(109,44,23,.35); border-radius: 999px; background: rgba(255,205,154,.78); }
-.event-card__date { margin: 0; color: var(--leaf); font: 600 clamp(2.6rem, 5vw, 5.5rem)/.9 var(--display); text-shadow: 0 1px 0 rgba(255,241,202,.75); }
-.event-card__date span { display: block; color: #8f2f16; font-size: 1.9em; }
+.date-scratch { width: 100%; margin: .75rem auto .35rem; user-select: none; -webkit-user-select: none; }
+.date-scratch__stage { position: relative; display: grid; place-items: center; min-height: 7rem; overflow: hidden; border: 2px solid #6d2c17; background: rgba(255,205,147,.88); }
+.date-scratch__value { display: flex; align-items: center; justify-content: space-between; width: 100%; padding: .8rem; color: #8f2f16; font: 600 clamp(2.8rem, 5vw, 4.4rem)/1 var(--display); letter-spacing: -.04em; white-space: nowrap; text-shadow: 0 1px 0 rgba(255,241,202,.75); }
+.date-scratch__value i { color: var(--leaf); font: 400 .45em/1 var(--mono); font-style: normal; }
+.date-scratch__canvas { position: absolute; z-index: 2; inset: 0; width: 100%; height: 100%; touch-action: none; cursor: crosshair; transition: opacity .5s ease, transform .5s cubic-bezier(.22,1,.36,1); }
+.date-scratch__hint { position: absolute; z-index: 3; top: 50%; left: 50%; margin: 0; padding: .5rem .7rem; border: 2px solid #ffbd1a; background: var(--pink); color: #fff1ca; font: 700 .68rem/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; transform: translate(-50%, -50%) rotate(-2deg); pointer-events: none; transition: opacity .2s ease; }
+.date-scratch__button { min-width: 9rem; min-height: 2.75rem; margin-top: .55rem; padding: .65rem .8rem; border: 2px solid #6d2c17; background: rgba(255,205,147,.88); color: #6d2c17; font: 700 .7rem/1 var(--mono); letter-spacing: .07em; text-transform: uppercase; cursor: pointer; }
+.date-scratch__button:hover { background: var(--leaf); color: #fff1ca; }
+.date-scratch.is-scratching .date-scratch__hint { opacity: 0; }
+.date-scratch.is-revealed .date-scratch__canvas { opacity: 0; transform: scale(1.015); pointer-events: none; }
+.date-scratch.is-revealed .date-scratch__hint, .date-scratch.is-revealed .date-scratch__button { opacity: 0; pointer-events: none; }
+.date-scratch [hidden] { display: none!important; }
+.date-scratch .sr-only { position: absolute!important; width: 1px!important; height: 1px!important; padding: 0!important; margin: -1px!important; overflow: hidden!important; clip: rect(0,0,0,0)!important; white-space: nowrap!important; border: 0!important; }
 .event-card > p:not(.eyebrow, .event-card__date, .status-message, .event-detail) { align-self: center; max-width: 100%; margin: .65rem 0; padding: .18rem .65rem; background: transparent; font-weight: 600; }
 .event-card > .event-detail { align-self: center; display: flex; align-items: center; max-width: 100%; gap: .42rem; margin: .16rem 0; padding: .08rem .65rem; font-weight: 600; line-height: 1.35; }
 .event-detail__icon { flex: 0 0 auto; width: 1.05rem; height: 1.05rem; fill: none; stroke: #8f2f16; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
@@ -270,7 +281,9 @@ em { font-weight: 500; }
   .event-card { width: calc(100% - 2.5rem); min-height: 690px; padding: 12rem 1.5rem 6.5rem; background-position: 40% center; background-size: 200% auto; border-radius: 2px; box-shadow: 8px 8px 0 var(--pink); }
   .event-card .action-row { gap: .6rem; margin-top: 1rem; }
   .event-card .text-button { min-width: 126px; font-size: .75rem; letter-spacing: .05em; }
-  .event-card__date { font-size: 3rem; }
+  .date-scratch__stage { min-height: 6.4rem; }
+  .date-scratch__value { font-size: clamp(2.55rem, 12vw, 3.5rem); }
+  .date-scratch__button { width: 100%; }
   .action-row { display: flex; grid-template-columns: 1fr 1fr; gap: 1rem; }
   .text-button { font-size: .75rem; }
   .portrait-story__copy { padding: 4rem 1.25rem 2rem; }

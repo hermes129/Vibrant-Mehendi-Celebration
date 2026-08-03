@@ -1,6 +1,7 @@
 import './styles.css';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { initDateScratch } from './date-scratch.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,6 +24,7 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 let heroAnimationStarted = false;
 
 music.volume = 0.34;
+initDateScratch();
 
 function syncMusicControl() {
   const isPlaying = !music.paused;
