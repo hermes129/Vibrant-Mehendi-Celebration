@@ -2,11 +2,12 @@ import './styles.css';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { initDateScratch } from './date-scratch.js';
+import { initMotifs, initDraw } from './utils/draw.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const eventDetails = {
-  title: 'Noor & Zayn — Mehendi',
+  title: 'Noor & Zayn, Mehendi',
   start: '20261017T143000Z',
   end: '20261017T180000Z',
   location: 'Beach Luxury Hotel, M. T. Khan Road, Karachi, Pakistan',
@@ -21,6 +22,10 @@ const music = document.querySelector('#site-music');
 const musicToggle = document.querySelector('#music-toggle');
 const musicLabel = musicToggle.querySelector('.music-toggle__label');
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+// Illustration layer, injected before anything measures the DOM.
+initMotifs();
+initDraw(reduceMotion);
 let heroAnimationStarted = false;
 
 music.volume = 0.34;
@@ -113,6 +118,11 @@ function openInvitation(startMusic = true) {
       stagger: .035,
       ease: 'power2.in'
     }, 0)
+    // The copy's magenta scrim is .opener__content::before and the vine veil is
+    // a direct child of .opener, so neither travels with the parting panels.
+    // Fade them here or they hang over the revealed hero until the timeline ends.
+    .to('.opener__content', { autoAlpha: 0, duration: .55, ease: 'power2.in' }, .05)
+    .to('.opener__ground', { autoAlpha: 0, duration: .5, ease: 'power2.in' }, .05)
     .to('.garland--opener', {
       autoAlpha: 0,
       yPercent: -145,

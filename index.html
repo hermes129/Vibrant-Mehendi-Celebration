@@ -9,17 +9,29 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
-    <title>Noor & Zayn — Mehendi</title>
+    <title>Noor &amp; Zayn / Mehendi</title>
   </head>
   <body class="is-locked">
     <a class="skip-link" href="#main">Skip to invitation</a>
 
     <div class="opener" id="opener" role="dialog" aria-modal="true" aria-labelledby="opener-title">
-      <div class="opener__panel opener__panel--left" aria-hidden="true"></div>
-      <div class="opener__panel opener__panel--right" aria-hidden="true"></div>
-      <img class="garland garland--opener" src="./assets/mehendi-garland.svg" alt="" aria-hidden="true" />
-      <img class="lantern lantern--opener-left" src="./assets/mehendi-lantern.svg" alt="" aria-hidden="true" />
-      <img class="lantern lantern--opener-right" src="./assets/mehendi-lantern.svg" alt="" aria-hidden="true" />
+      <div class="opener__panel opener__panel--left" aria-hidden="true">
+        <picture>
+          <source media="(max-width: 760px)" srcset="./assets/gate-mehendi-portrait.webp">
+          <img class="opener__art" src="./assets/gate-mehendi.webp" alt="">
+        </picture>
+      </div>
+      <div class="opener__panel opener__panel--right" aria-hidden="true">
+        <picture>
+          <source media="(max-width: 760px)" srcset="./assets/gate-mehendi-portrait.webp">
+          <img class="opener__art" src="./assets/gate-mehendi.webp" alt="">
+        </picture>
+      </div>
+      <div class="garland garland--opener" data-motif="marigoldString" aria-hidden="true"></div>
+      <div class="lantern lantern--opener-left" data-motif="lanternString" aria-hidden="true"></div>
+      <div class="lantern lantern--opener-right" data-motif="lanternString" aria-hidden="true"></div>
+      <!-- Video drop-in: add data-gate-video="./assets/gate.mp4" here. -->
+      <div class="opener__ground" data-motif="mehendiTile" data-motif-id="gate" aria-hidden="true"></div>
       <div class="opener__content">
         <p class="eyebrow">Noor <span aria-hidden="true">✦</span> Zayn</p>
         <h1 id="opener-title"><span>Let the</span><strong>mehendi</strong><span>begin</span></h1>
@@ -34,7 +46,8 @@
 
     <main id="main" tabindex="-1">
       <section class="hero" aria-labelledby="hero-title">
-        <img class="hero__image" src="./assets/mehendi-hero.webp" alt="A couple in vibrant Pakistani clothes dancing beneath marigold garlands" />
+        <img class="hero__art" src="./assets/hero-mehendi-night.webp" alt="" aria-hidden="true">
+        <div class="hero__image" data-motif="mehendiTile" data-motif-id="hero" aria-hidden="true"></div>
         <div class="hero__wash" aria-hidden="true"></div>
         <div class="hero__topline">
           <p>Karachi, Pakistan</p>
@@ -45,15 +58,15 @@
           <h2 id="hero-title"><span>Noor</span><b>&</b><span>Zayn</span></h2>
           <p class="hero__dek">An evening dipped in marigold, set to the beat of the dhol.</p>
         </div>
-        <a class="scroll-cue" href="#invitation">Scroll to celebrate <span aria-hidden="true">↓</span></a>
+        <a class="scroll-cue sr-only" href="#invitation">Scroll to celebrate</a>
       </section>
 
       <section class="invitation motif-field" id="invitation" aria-labelledby="invitation-title">
         <div class="invitation__burst" aria-hidden="true">✦</div>
-        <img class="garland garland--invitation" src="./assets/mehendi-garland.svg" alt="" aria-hidden="true" loading="lazy" />
-        <img class="lantern lantern--invitation" src="./assets/mehendi-lantern.svg" alt="" aria-hidden="true" loading="lazy" />
+        <div class="garland garland--invitation" data-motif="marigoldString" aria-hidden="true"></div>
+        <div class="lantern lantern--invitation" data-motif="lanternString" aria-hidden="true"></div>
         <div class="invitation__copy reveal">
-          <p class="section-kicker">01 — Rang, rasam & raqs</p>
+          <p class="section-kicker">Rang, rasam &amp; raqs</p>
           <h2 id="invitation-title">Come for the <em>colour.</em><br />Stay for the <em>dhol.</em></h2>
           <p>With joyous hearts, our families invite you to celebrate a night of henna, music, dance, and the happiest kind of chaos.</p>
         </div>
@@ -92,13 +105,16 @@
       </section>
 
       <section class="portrait-story" aria-labelledby="tradition-title">
-        <img class="chakri chakri--portrait" src="./assets/mehendi-chakri.svg" alt="" aria-hidden="true" loading="lazy" />
+        <div class="chakri chakri--portrait" data-motif="chakri" aria-hidden="true"></div>
         <div class="portrait-story__image-wrap reveal">
-          <img src="./assets/mehendi-bride.webp" alt="A smiling bride in mustard and fuchsia having intricate henna applied" loading="lazy" />
+          <div class="portrait-story__art">
+            <img src="./assets/story-henna-hands.webp"
+                 alt="An illustration of a pair of hands covered in fresh mehendi, laid on a cloth strewn with marigolds">
+          </div>
           <p class="image-note">A little henna, a lifetime of stories.</p>
         </div>
         <div class="portrait-story__copy reveal">
-          <p class="section-kicker">02 — A beloved tradition</p>
+          
           <h2 id="tradition-title">Hands full of <em>henna.</em><br />Hearts full of <em>home.</em></h2>
           <p>Mehendi carries laughter, blessings and old family stories in every line. This one begins with all of you beside us.</p>
           <div class="mini-flower" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
@@ -109,7 +125,7 @@
         <img class="venue__image" src="./assets/mehendi-courtyard.webp" alt="A historic haveli courtyard decorated with colourful textiles and marigolds" loading="lazy" />
         <div class="venue__overlay" aria-hidden="true"></div>
         <div class="venue__card reveal">
-          <p class="section-kicker">03 — The place</p>
+          
           <h2 id="venue-title">Meet us in the <em>courtyard.</em></h2>
           <p>Beach Luxury Hotel<br />M. T. Khan Road, Karachi</p>
           <a class="solid-button" href="https://www.google.com/maps/search/?api=1&query=Beach+Luxury+Hotel+Karachi" target="_blank" rel="noreferrer">Open map</a>
@@ -117,9 +133,9 @@
       </section>
 
       <section class="programme motif-field" aria-labelledby="programme-title">
-        <img class="peacock peacock--programme" src="./assets/mehendi-peacock.svg" alt="" aria-hidden="true" loading="lazy" />
+        <div class="peacock peacock--programme" data-motif="peacock" aria-hidden="true"></div>
         <div class="programme__heading reveal">
-          <p class="section-kicker">04 — The rhythm of the night</p>
+          <p class="section-kicker">The rhythm of the night</p>
           <h2 id="programme-title">First the flowers.<br /><em>Then the floor.</em></h2>
         </div>
         <ol class="timeline reveal">
@@ -131,18 +147,21 @@
       </section>
 
       <section class="celebration" aria-labelledby="celebration-title">
-        <img src="./assets/mehendi-friends.webp" alt="Friends dancing together while a dhol player performs at a mehendi" loading="lazy" />
+        <div class="celebration__art" aria-hidden="true">
+          <img src="./assets/celebration-dhol.webp" alt="" role="img"
+               aria-label="An illustration of dhol players and dancers">
+        </div>
         <div class="celebration__caption reveal">
-          <p class="section-kicker">05 — Everybody dances</p>
+          
           <h2 id="celebration-title">Your only job:<br /><em>bring the energy.</em></h2>
         </div>
       </section>
 
       <section class="dress-code" aria-labelledby="dress-title">
         <div class="dress-code__copy reveal">
-          <p class="section-kicker">06 — Dress in celebration</p>
+          <p class="section-kicker">Dress in celebration</p>
           <h2 id="dress-title">Colour is <em>highly encouraged.</em></h2>
-          <p>Wear your brightest Pakistani festive formals—mirror work, gota, jewel tones and flowers are all welcome.</p>
+          <p>Wear your brightest Pakistani festive formals: mirror work, gota, jewel tones and flowers are all welcome.</p>
         </div>
         <div class="swatches reveal" aria-label="Suggested dress colours">
           <span style="--swatch:#e93675">Fuchsia</span>
@@ -154,9 +173,9 @@
       </section>
 
       <section class="countdown motif-field" aria-labelledby="countdown-title">
-        <img class="chakri chakri--countdown-left" src="./assets/mehendi-chakri.svg" alt="" aria-hidden="true" loading="lazy" />
-        <img class="chakri chakri--countdown-right" src="./assets/mehendi-chakri.svg" alt="" aria-hidden="true" loading="lazy" />
-        <p class="section-kicker">07 — Counting down</p>
+        <div class="chakri chakri--countdown-left" data-motif="chakri" aria-hidden="true"></div>
+        <div class="chakri chakri--countdown-right" data-motif="chakri" aria-hidden="true"></div>
+        
         <h2 id="countdown-title">Until the dhol <em>drops.</em></h2>
         <div class="countdown__grid" id="countdown" role="timer" aria-live="off">
           <div><strong data-unit="days">00</strong><span>Days</span></div>
@@ -168,9 +187,9 @@
 
       <section class="rsvp" aria-labelledby="rsvp-title">
         <div class="rsvp__flower" aria-hidden="true"><span></span></div>
-        <img class="garland garland--rsvp" src="./assets/mehendi-garland.svg" alt="" aria-hidden="true" loading="lazy" />
-        <img class="peacock peacock--rsvp" src="./assets/mehendi-peacock.svg" alt="" aria-hidden="true" loading="lazy" />
-        <p class="section-kicker">08 — Kindly reply</p>
+        <div class="garland garland--rsvp" data-motif="marigoldString" aria-hidden="true"></div>
+        <div class="peacock peacock--rsvp" data-motif="peacock" aria-hidden="true"></div>
+        
         <h2 id="rsvp-title">Will you join<br />our <em>mehfil?</em></h2>
         <p>Please reply by 15 September 2026. We cannot wait to celebrate with you.</p>
         <button class="solid-button solid-button--light" id="rsvp-button" type="button">Send your RSVP</button>

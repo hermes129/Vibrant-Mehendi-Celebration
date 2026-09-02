@@ -41,7 +41,9 @@ em { font-weight: 500; }
 }
 
 .garland, .lantern, .chakri, .peacock { position: absolute; z-index: 2; pointer-events: none; user-select: none; }
-.garland { width: min(60vw, 720px); }
+/* A definite height is what makes the sliced garland size its flowers by
+   height and simply show fewer of them in a narrower box. */
+.garland { width: 100%; height: fit-content; overflow: hidden; }
 .lantern { width: clamp(88px, 10vw, 170px); filter: drop-shadow(0 12px 16px rgba(94,45,8,.25)); transform-origin: top center; }
 .chakri { width: clamp(96px, 13vw, 190px); }
 .peacock { width: clamp(150px, 20vw, 290px); }
@@ -49,18 +51,56 @@ em { font-weight: 500; }
 /* Opener */
 .opener { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; min-height: 100dvh; color: var(--cream); overflow: hidden; }
 .opener[hidden] { display: none; }
-.opener__panel { position: absolute; inset-block: 0; width: 50.2%; background-color: var(--pink); will-change: transform; }
-.opener__panel::before { content: ''; position: absolute; inset: 14px; border: 2px solid var(--marigold); background-image: url('/assets/mehendi-pattern.svg'), repeating-linear-gradient(45deg, transparent 0 24px, rgba(255,241,202,.08) 24px 26px); background-size: 260px 260px, auto; filter: saturate(1.35) brightness(1.2); }
+/* overflow:hidden is load-bearing: each panel must show only its own half of
+   the painting. Without it both panels paint the full 100vw image, they
+   coincide while closed so the gate looks right, and sliding them apart
+   swaps the halves instead of opening. */
+.opener__panel { position: absolute; inset-block: 0; width: 50.2%; overflow: hidden; background-color: var(--pink); will-change: transform; }
+.opener__panel::before { content: ''; position: absolute; z-index: 2; inset: 14px; border: 2px solid var(--marigold); }
+/* The painting carries the ground now, so the panel keeps only its gold rule.
+   Both halves resolve to the same 100vw box, so the split never misaligns —
+   the panels' 0.2% overlap just draws a sliver of it twice. */
+.opener__panel picture { display: contents; }
+.opener__art {
+  position: absolute; top: 0; z-index: 0;
+  width: 100vw; max-width: none; height: 100%;
+  object-fit: cover;
+  pointer-events: none; user-select: none;
+}
+.opener__panel--left .opener__art { left: 0; }
+.opener__panel--right .opener__art { right: 0; }
+@media (max-width: 760px) {
+  .opener__hint { padding: .45rem .9rem; font-size: 1rem; }
+}
 .opener__panel--left { left: 0; }
 .opener__panel--right { right: 0; }
 .opener__panel--left::before { border-right: 0; }
 .opener__panel--right::before { border-left: 0; }
-.opener__content { position: relative; z-index: 2; width: min(92vw, 780px); padding: 4rem 1.5rem; text-align: center; }
+.opener__content { position: relative; z-index: 3; width: min(92vw, 780px); padding: 4rem 1.5rem; text-align: center; }
+/* The painting is cream-grounded and the opener type is cream, so the copy
+   gets its own magenta scrim — which also keeps the site's pink identity
+   present now that the ground behind it is a painting. */
+.opener__content::before {
+  content: ''; position: fixed; z-index: -1; inset: -8% -12%;
+  background: radial-gradient(ellipse 58% 62% at 50% 50%,
+    rgba(158, 23, 76, .84) 0%, rgba(158, 23, 76, .56) 58%, rgba(158, 23, 76, 0) 100%);
+}
+.opener__content h1, .opener__date, .opener__hint, .opener .eyebrow { text-shadow: 0 2px 14px rgba(83, 10, 40, .8); }
 .opener__content h1 { display: grid; justify-items: center; gap: .45rem; margin: 1rem 0; text-wrap: balance; }
 .opener__content h1 strong { display: block; font: 600 clamp(4.4rem, 13vw, 10rem)/.82 var(--display); letter-spacing: -.075em; text-transform: lowercase; }
 .opener__content h1 span { display: block; font: 600 clamp(.84rem, 1.3vw, 1.1rem)/1.35 var(--mono); letter-spacing: .25em; text-transform: uppercase; }
 .opener__date { margin: 2rem 0 1rem; font: 700 1.3rem/1.45 var(--mono); letter-spacing: .25em; }
-.opener__hint { margin: 1.0rem 0 0; font-size: 1.3rem; line-height: 1.5; }
+/* The painting's floor is pale and the hint is cream, so it gets a capsule
+   rather than being nudged around looking for a dark patch. */
+.opener__hint {
+  display: inline-block; margin: 1.0rem 0 0; padding: .5rem 1.1rem;
+  border-radius: 999px; background: rgba(83, 10, 40, .5);
+  backdrop-filter: blur(2px);
+  font-size: 1.3rem; line-height: 1.5;
+}
+/* Retired on the gate: the painting hangs its own lanterns and garlands.
+   They stay everywhere else on the site. */
+.garland--opener, .lantern--opener-left, .lantern--opener-right { display: none; }
 .garland--opener { z-index: 3; top: .35rem; left: 50%; transform: translateX(-50%); }
 .lantern--opener-left { z-index: 3; top: .25rem; left: clamp(.2rem, 4vw, 4rem); transform: rotate(3deg); }
 .lantern--opener-right { z-index: 3; top: .25rem; right: clamp(.2rem, 4vw, 4rem); transform: rotate(-3deg) scale(.82); }
@@ -77,13 +117,34 @@ em { font-weight: 500; }
 .hero { position: relative; min-height: 100svh; display: grid; align-items: end; color: var(--white); overflow: hidden; background: var(--ink); }
 .hero__image, .hero__wash { position: absolute; inset: 0; height: 100%; object-fit: cover; }
 .hero__image { object-position: 50% 45%; }
+/* The painting carries the hero; the vine tile veils it rather than
+   standing in for it, the way the gate's jaali does. */
+.hero__art {
+  position: absolute; inset: 0; z-index: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 28%;
+  pointer-events: none; user-select: none;
+}
+.hero__image { z-index: 1; opacity: .1; mix-blend-mode: soft-light; }
+.hero__wash { z-index: 1; }
 .hero__wash { background: linear-gradient(180deg, rgba(10,22,13,.35), transparent 28%, rgba(10,22,13,.05) 50%, rgba(10,22,13,.86)); }
 .hero__topline { position: absolute; inset: 1.5rem 2rem auto; z-index: 1; display: flex; justify-content: space-between; gap: 1rem; font: 700 .78rem/1.45 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
 .hero__copy { position: relative; z-index: 1; width: min(100%, 1500px); margin-inline: auto; padding: 4rem clamp(1.25rem, 4vw, 4.5rem) 3rem; }
 .hero__copy .eyebrow { margin-left: .4rem; }
 .hero__copy h2 { display: flex; align-items: center; gap: clamp(.5rem, 2vw, 2.5rem); margin: 0; font: 600 clamp(5rem, 15vw, 14rem)/.7 var(--display); letter-spacing: -.085em; }
 .hero__copy h2 b { color: var(--marigold); font-size: .42em; font-weight: 500; }
-.hero__dek { max-width: 37rem; margin: 2rem 0 0 auto; font-size: clamp(1.05rem, 1.8vw, 1.45rem); line-height: 1.45; }
+/* Was margin-right:auto, which pushed the dek right while the wordmark sat
+   left — it read as a stray paragraph and collided with the scroll cue.
+   Anchored under the wordmark with a rule instead. */
+.hero__dek {
+  position: relative; max-width: 34rem; margin: 1.9rem 0 0;
+  padding-top: 1.4rem;
+  font-size: clamp(1.05rem, 1.8vw, 1.45rem); line-height: 1.45;
+}
+.hero__dek::before {
+  content: ''; position: absolute; top: 0; left: .3rem;
+  width: 64px; height: 2px; background: var(--marigold);
+}
 .scroll-cue { position: absolute; z-index: 2; right: 2rem; bottom: 2rem; display: flex; align-items: center; gap: 1rem; min-width: 44px; min-height: 44px; padding-inline: 14px; color: inherit; font: 700 .75rem/1.4 var(--mono); letter-spacing: .1em; text-decoration: none; text-transform: uppercase; writing-mode: vertical-rl; }
 
 /* Invitation */
@@ -164,7 +225,15 @@ em { font-weight: 500; }
 /* Celebration */
 .celebration { position: relative; min-height: 100svh; display: grid; align-items: end; color: var(--white); background: var(--ink); overflow: hidden; }
 .celebration > img { position: absolute; inset: 0; height: 100%; object-fit: cover; object-position: center; filter: saturate(1.08); }
-.celebration::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(10,20,12,.85)); }
+/* The headline sits bottom-left and the drumming fills the right, so the
+   scrim is weighted to the corner the type occupies instead of dimming
+   the whole picture. Blue-black, not green-black, to sit on cobalt. */
+.celebration::after {
+  content: ''; position: absolute; inset: 0; z-index: 1;
+  background:
+    linear-gradient(180deg, transparent 46%, rgba(6, 18, 52, .88)),
+    linear-gradient(90deg, rgba(6, 18, 52, .74) 0%, rgba(6, 18, 52, .26) 38%, transparent 62%);
+}
 .celebration__caption { position: relative; z-index: 1; padding: clamp(3rem, 8vw, 8rem); }
 .celebration h2 { margin: 0; font: 600 clamp(4rem, 10vw, 11rem)/.82 var(--display); letter-spacing: -.07em; }
 .celebration h2 em { color: var(--marigold); }
@@ -187,8 +256,8 @@ em { font-weight: 500; }
 .countdown__grid div:last-child { border-right: 0; }
 .countdown__grid strong { display: block; color: var(--pink); font: 600 clamp(2.8rem, 7vw, 7rem)/1 var(--display); }
 .countdown__grid span { display: block; margin-top: .7rem; font: 700 .8rem/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
-.chakri--countdown-left { top: -1rem; left: 2%; transform: rotate(-7deg); }
-.chakri--countdown-right { top: -1rem; right: 2%; transform: rotate(7deg); }
+.chakri--countdown-left { top: -1rem; left: 2%; transform: rotate(-7deg) scale(3); }
+.chakri--countdown-right { top: -1rem; right: 2%; transform: rotate(7deg) scale(2); }
 
 /* RSVP */
 .rsvp { position: relative; min-height: 90svh; display: grid; place-content: center; justify-items: center; padding: clamp(5rem, 11vw, 11rem) 1.5rem; color: var(--cream); background: var(--cobalt); text-align: center; overflow: hidden; }
@@ -272,7 +341,7 @@ em { font-weight: 500; }
   .scroll-cue { right: .8rem; bottom: 1rem; font-size: .75rem; line-height: 1.4; }
   .invitation__copy h2, .portrait-story h2, .programme h2, .dress-code h2, .countdown h2, .rsvp h2, .venue h2 { font-size: clamp(3rem, 14vw, 4.5rem); line-height: .9; letter-spacing: -.055em; }
   .invitation__copy { padding: 4rem 1.25rem 2.5rem; }
-  .garland { width: 270px; }
+  .garland { width: 100%; }
   .lantern { width: 78px; }
   .lantern--opener-left { left: -.4rem; }
   .lantern--opener-right { right: -.4rem; }
@@ -338,3 +407,137 @@ em { font-weight: 500; }
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .reveal { opacity: 1; }
 }
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Illustration layer — no photography, one motif vocabulary.
+   Every mark reads --motif-stroke / --motif-accent / --motif-weight.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root {
+  --motif-stroke: var(--pink-dark);
+  --motif-accent: var(--leaf);
+  --motif-weight: 1.6;
+}
+
+.motif { display: block; width: 100%; height: 100%; overflow: visible; }
+[data-motif] { line-height: 0; }
+.motif-video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Gate */
+/* The vine tile now sits over the painting rather than standing in for it. */
+.opener__ground {
+  position: absolute; inset: 0; z-index: 1;
+  --motif-stroke: var(--cream); --motif-weight: 1;
+  opacity: .1; mix-blend-mode: soft-light;
+}
+.opener__ground .motif { width: 100%; height: 100%; }
+.opener__content { position: relative; z-index: 2; }
+
+/* Hero — the vine tile carries the ground, the names carry the image. */
+.hero__image {
+  position: absolute; inset: 0; z-index: 0;
+  --motif-stroke: var(--marigold); --motif-weight: 1.1;
+  overflow: hidden;
+  /* No photograph to light the section any more, so the ground has to carry it. */
+  background: var(--leaf);
+  background-image: radial-gradient(circle at 50% 34%, #2c8a58 0%, #1c6b43 42%, #0d3d27 100%);
+}
+.hero__image .motif { width: 100%; height: 100%; opacity: .34; }
+
+/* Decorative marks inherit their box from the original artwork classes. */
+.garland, .lantern, .chakri, .peacock { line-height: 0; }
+.garland .motif, .lantern .motif, .chakri .motif, .peacock .motif { width: 100%; height: 100%; }
+.garland .motif--marigold { overflow: hidden; }
+.garland { --motif-stroke: var(--marigold); --motif-accent: var(--coral); }
+.lantern { --motif-stroke: var(--coral); --motif-accent: var(--marigold); }
+.chakri  { --motif-stroke: var(--cobalt); --motif-accent: var(--pink); }
+.peacock { --motif-stroke: var(--leaf);   --motif-accent: var(--cobalt); }
+
+/* Story portrait — the hennaed hand, drawn on scroll. */
+.portrait-story__art {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  display: block;
+  padding: clamp(1rem, 2vw, 1.8rem);
+  background: var(--cream);
+  --motif-stroke: var(--leaf); --motif-accent: var(--pink-dark); --motif-weight: 1.8;
+}
+.portrait-story__art .motif { position: absolute; inset: clamp(1rem, 2vw, 1.8rem); width: auto; height: auto; }
+/* The painted plate fills the mount edge to edge — the polaroid's own paper
+   border already frames it, so the cream inset the line drawing needed is
+   just a second border doing nothing. */
+.portrait-story__art:has(img) { padding: 0; }
+.portrait-story__art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* Venue — lanterns over the courtyard ground. */
+.venue__image {
+  position: absolute; inset: 0; z-index: 0;
+  display: block;
+  background: var(--leaf);
+  background-image: radial-gradient(circle at 50% 30%, #2f9160 0%, var(--leaf) 55%, #165433 100%);
+  --motif-stroke: var(--marigold); --motif-accent: var(--cream);
+}
+.venue__image .motif {
+  position: absolute; top: 6%; right: 4%; left: 42%;
+  width: auto; height: min(40vh, 340px);
+  opacity: .8;
+}
+
+/* Celebration — the dhol takes the place of the dance-floor photograph. */
+/* Mirrors what `.celebration > img` did — fills the section behind the caption. */
+.celebration__art {
+  position: absolute; inset: 0; z-index: 0;
+  display: block;
+  background: var(--cobalt);
+}
+.celebration__art img {
+  display: block; width: 100%; height: 100%;
+  object-fit: cover; object-position: 62% 38%;
+}
+.celebration__caption { position: relative; z-index: 2; }
+
+@media (max-width: 720px) {
+  .venue__image .motif { left: 8%; right: 8%; height: 22vh; }
+  .celebration__art { min-height: 34vh; }
+  /* Cover-cropping a 16:9 scene into a phone shows only the middle 26% — which
+     here is the empty floor between the dancers and the dholis. Contained, the
+     whole scene reads as a band and the cobalt ground fills the rest. */
+  .celebration__art img { object-fit: cover; object-position: 70% 26%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-draw], [data-draw] * { stroke-dasharray: none !important; stroke-dashoffset: 0 !important; }
+}
+
+
+/* The kit's garland is shorter and wider than the artwork it replaced, so the
+   gate needs a little more headroom above the title. */
+.garland--opener { width: min(44vw, 400px); height: clamp(64px, 13vw, 96px); top: .2rem; }
+.opener__content { padding-top: clamp(3.5rem, 9vh, 7rem); }
+
+
+/* Restored photography — the courtyard, plus the henna-hand artwork panel.
+   The couple, the bride and the friends stay illustrated. */
+.venue__image { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* A global screen-reader-only utility. This site only had it scoped to
+   .date-scratch, so `class="sr-only"` anywhere else silently did nothing and
+   the element stayed fully visible. The scroll cue below relies on it. */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* The cue is kept in the document as a real anchor so keyboard and
+   screen-reader users still get a way into the invitation, but it is no
+   longer painted: both design skills treat a visible "scroll" prompt as a
+   tell, and at 390 this one also sat 6px past the right edge. */
+.scroll-cue.sr-only { writing-mode: horizontal-tb; min-width: 0; min-height: 0; }
