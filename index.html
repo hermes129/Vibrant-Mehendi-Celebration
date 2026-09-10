@@ -219,8 +219,9 @@
     </dialog>
 
     <div class="confetti" id="confetti" aria-hidden="true"></div>
-    <audio id="site-music" loop preload="metadata">
-      <source src="./assets/dhol-thap-punjab-folk.ogg" type="audio/ogg" />
+    <audio id="site-music" loop preload="none">
+      <source src="./assets/dhol-thap-punjab-folk.ogg" type="audio/ogg; codecs=vorbis" />
+        <source src="./assets/dhol-thap-punjab-folk.mp3" type="audio/mpeg" />
     </audio>
     <button class="music-toggle" id="music-toggle" type="button" aria-pressed="false" aria-label="Play mehendi music" hidden>
       <span class="music-toggle__icon" aria-hidden="true"><i></i><i></i></span>
